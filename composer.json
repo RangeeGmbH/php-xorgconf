@@ -1,0 +1,16 @@
+{
+    "name": "rangeegmbh/php-xorgconf",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "René Vögeli",
+            "email": "rvoegeli@rangee.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Xorgconf\\": "src/Xorgconf"
+        }
+    }
+}
