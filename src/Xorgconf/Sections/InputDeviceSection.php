@@ -527,8 +527,8 @@ class InputDeviceSection extends Section
 
     protected function __render($entries)
     {
-        $this->addBoolOption("AutoServerLayout", $this->autoServerLayout);
-        $this->addBoolOption("Floating", $this->floating);
+        $this->addOption("AutoServerLayout", $this->autoServerLayout);
+        $this->addOption("Floating", $this->floating);
         $this->addOption("TransformationMatrix", $this->transformationMatrix);
         $this->addOption("AccelerationProfile", $this->accelerationProfile);
         $this->addOption("ConstantDeceleration", $this->constantDeceleration);
