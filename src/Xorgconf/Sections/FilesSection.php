@@ -45,7 +45,7 @@ class FilesSection extends Section
      * up the fontpath used by the server. Font path elements can be absolute directory paths, catalogue directories or
      * a font server identifier.
      *
-     * @var string $fontPath
+     * @var string[] $fontPath
      */
     private $fontPath;
 
@@ -55,7 +55,7 @@ class FilesSection extends Section
      * specified, and they will be concatenated to build the module search path used by the server. The default module
      * path is /usr/lib/xorg/modules
      *
-     * @var string $modulePath
+     * @var string[] $modulePath
      */
     private $modulePath;
 
@@ -72,7 +72,7 @@ class FilesSection extends Section
      *
      * @see \Xorgconf\Sections\FilesSection::$fontPath $fontPath
      *
-     * @return string
+     * @return string[]
      */
     public function getFontPath()
     {
@@ -84,7 +84,7 @@ class FilesSection extends Section
      *
      * @see \Xorgconf\Sections\FilesSection::$fontPath $fontPath
      *
-     * @param string $fontPath
+     * @param string[] $fontPath
      *
      * @return FilesSection
      */
@@ -96,11 +96,27 @@ class FilesSection extends Section
     }
 
     /**
+     * Adds a fontPath
+     *
+     * @see \Xorgconf\Sections\FilesSection::$fontPath $fontPath
+     *
+     * @param string $fontPath
+     *
+     * @return FilesSection
+     */
+    public function addFontPath($fontPath)
+    {
+        $this->fontPath[] = $fontPath;
+
+        return $this;
+    }
+
+    /**
      * Gets the modulePath
      *
      * @see \Xorgconf\Sections\FilesSection::$modulePath $modulePath
      *
-     * @return string
+     * @return string[]
      */
     public function getModulePath()
     {
@@ -112,13 +128,29 @@ class FilesSection extends Section
      *
      * @see \Xorgconf\Sections\FilesSection::$modulePath $modulePath
      *
-     * @param string $modulePath
+     * @param string[] $modulePath
      *
      * @return FilesSection
      */
     public function setModulePath($modulePath)
     {
         $this->modulePath = $modulePath;
+
+        return $this;
+    }
+
+    /**
+     * Adds a modulePath
+     *
+     * @see \Xorgconf\Sections\FilesSection::$modulePath $modulePath
+     *
+     * @param string $modulePath
+     *
+     * @return FilesSection
+     */
+    public function addModulePath($modulePath)
+    {
+        $this->modulePath[] = $modulePath;
 
         return $this;
     }
