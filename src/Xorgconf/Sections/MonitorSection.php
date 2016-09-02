@@ -509,14 +509,14 @@ class MonitorSection extends Section
             return false;
         }
 
-        $this->addBoolOption('Primary', $this->primary);
+        $this->addOption('Primary', $this->primary);
         $this->addOption('PreferredMode', $this->preferredMode);
         $this->addOption('LeftOf', $this->leftOf);
         $this->addOption('RightOf', $this->rightOf);
         $this->addOption('Above', $this->above);
         $this->addOption('Below', $this->below);
-        $this->addBoolOption('Enable', $this->enable);
-        $this->addBoolOption('Ignore', $this->ignore);
+        $this->addOption('Enable', $this->enable);
+        $this->addOption('Ignore', $this->ignore);
         $this->addOption('Rotate', $this->rotate);
 
         if (isset($this->positionX) && isset($this->positionY)) {

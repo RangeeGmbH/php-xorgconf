@@ -76,25 +76,6 @@ abstract class Section
     }
 
     /**
-     * Adds a boolean entry to the array of custom options.
-     *
-     * @see \Xorgconf\Section::$options $options
-     *
-     * @param $key
-     * @param $value
-     *
-     * @return Section
-     */
-    public function addBoolOption($key, $value)
-    {
-        if (isset($value)) {
-            $this->addOption($key, ($value) ? 'true' : 'false');
-        }
-
-        return $this;
-    }
-
-    /**
      * Adds an entry to the array of custom options.
      *
      * @see \Xorgconf\Section::$options $options
@@ -152,6 +133,8 @@ abstract class Section
                     foreach ($value as $val) {
                         $result .= "  {$key} \"{$val}\"\n";
                     }
+                } elseif (is_bool($value)) {
+                    $result .= "  {$key} \"" . ($value ? 'true' : 'false') . "\"\n";
                 } else {
                     // $value is a scalar
                     $result .= "  {$key} \"{$value}\"\n";
@@ -171,6 +154,8 @@ abstract class Section
                         foreach ($value as $val) {
                             $result .= "  Option \"{$key}\" \"{$val}\"\n";
                         }
+                    } elseif (is_bool($value)) {
+                        $result .= "  Option \"{$key}\" \"" . ($value ? 'true' : 'false') . "\"\n";
                     } else {
                         // $value is a scalar
                         $result .= "  Option \"{$key}\" \"{$value}\"\n";
