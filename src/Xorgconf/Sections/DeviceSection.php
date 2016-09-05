@@ -78,10 +78,9 @@ class DeviceSection extends Section
      */
     private $screen;
 
-    public function __construct($identifier, $driver)
+    public function __construct($identifier)
     {
         $this->identifier = $identifier;
-        $this->driver = $driver;
     }
 
     /**
@@ -201,7 +200,7 @@ class DeviceSection extends Section
      */
     public function render()
     {
-        if (empty($this->identifier) || empty($this->driver)) {
+        if (empty($this->identifier)) {
             return false;
         }
 

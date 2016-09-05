@@ -171,10 +171,9 @@ class InputDeviceSection extends Section
      */
     private $accelerationThreshold;
 
-    public function __construct($identifier, $driver = null)
+    public function __construct($identifier)
     {
         $this->identifier = $identifier;
-        $this->driver = $driver;
     }
 
     /**
@@ -518,7 +517,7 @@ class InputDeviceSection extends Section
      */
     public function render()
     {
-        if (empty($this->identifier) || empty($this->driver)) {
+        if (empty($this->identifier)) {
             return false;
         }
 
