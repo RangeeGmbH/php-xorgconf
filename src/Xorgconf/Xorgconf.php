@@ -112,7 +112,7 @@ class Xorgconf
             return false;
         }
 
-        $result = "";
+        $result = '';
 
         foreach ($this->sections as $section) {
             $result .= $section->render();

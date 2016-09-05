@@ -590,7 +590,7 @@ class InputClassSection extends InputDeviceSection
             return false;
         }
 
-        $this->addBoolOption('Ignore', $this->ignore);
+        $this->addOption('Ignore', $this->ignore);
 
         return $this->__render(array(
             'MatchProduct'       => $this->matchProduct,

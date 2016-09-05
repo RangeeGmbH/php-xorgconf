@@ -519,7 +519,7 @@ class MonitorSection extends Section
         $this->addOption('Ignore', $this->ignore);
         $this->addOption('Rotate', $this->rotate);
 
-        if (isset($this->positionX) && isset($this->positionY)) {
+        if (isset($this->positionX, $this->positionY)) {
             $this->addOption('Position', (string)$this->positionX . ' ' . (string)$this->positionY);
         }
 

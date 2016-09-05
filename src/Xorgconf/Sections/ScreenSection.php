@@ -240,7 +240,7 @@ class ScreenSection extends Section
             return false;
         }
 
-        $this->addBoolOption('Accel', $this->accel);
+        $this->addOption('Accel', $this->accel);
 
         return $this->_render(array(
             'Identifier'   => $this->identifier,
