@@ -36,37 +36,37 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $conf = new Xorgconf();
 
-$device = new DeviceSection("device1", "driverA");
+$device = new DeviceSection('device1', 'driverA');
 $device->setScreen(4);
 $conf->addSection($device);
 
-$monitor = new MonitorSection("monitor1");
+$monitor = new MonitorSection('monitor1');
 $monitor
     ->setPrimary(true)
     ->setEnable(false);
 $conf->addSection($monitor);
 
-$screen = new ScreenSection("screen1");
+$screen = new ScreenSection('screen1');
 $screen
     ->setDevice($device)
     ->setMonitor($monitor);
 $conf->addSection($screen);
 
-$inputDevice1 = new InputDeviceSection("inputDevice1", "driverB");
+$inputDevice1 = new InputDeviceSection('inputDevice1', 'driverB');
 $inputDevice1->setFloating(true);
 $conf->addSection($inputDevice1);
 
-$inputDevice2 = new InputDeviceSection("inputDevice2", "driverC");
+$inputDevice2 = new InputDeviceSection('inputDevice2', 'driverC');
 $inputDevice2->setAutoServerLayout(false);
 $conf->addSection($inputDevice2);
 
-$inputClass = new InputClassSection("inputClass1");
+$inputClass = new InputClassSection('inputClass1');
 $inputClass
     ->setAdaptiveDeceleration(1.5)
     ->setMatchIsTouchscreen(true);
 $conf->addSection($inputClass);
 
-$layout = new ServerLayoutSection("layout1");
+$layout = new ServerLayoutSection('layout1');
 $layout
     ->addScreen($screen)
     ->addInputDevice($inputDevice1)
@@ -75,7 +75,7 @@ $conf->addSection($layout);
 
 $flags = new ServerFlagsSection();
 $flags
-    ->setDefaultServerLayout("layout1")
+    ->setDefaultServerLayout('layout1')
     ->setDontZap(false)
     ->setDontVtSwitch(true)
     ->setBlankTime(5);

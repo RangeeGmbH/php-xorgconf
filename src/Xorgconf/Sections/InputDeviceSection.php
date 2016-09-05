@@ -527,16 +527,16 @@ class InputDeviceSection extends Section
 
     protected function __render($entries)
     {
-        $this->addOption("AutoServerLayout", $this->autoServerLayout);
-        $this->addOption("Floating", $this->floating);
-        $this->addOption("TransformationMatrix", $this->transformationMatrix);
-        $this->addOption("AccelerationProfile", $this->accelerationProfile);
-        $this->addOption("ConstantDeceleration", $this->constantDeceleration);
-        $this->addOption("AdaptiveDeceleration", $this->adaptiveDeceleration);
-        $this->addOption("AccelerationScheme", $this->accelerationScheme);
-        $this->addOption("AccelerationNumerator", $this->accelerationNumerator);
-        $this->addOption("AccelerationDenominator", $this->accelerationDenominator);
-        $this->addOption("AccelerationThreshold", $this->accelerationThreshold);
+        $this->addOption('AutoServerLayout', $this->autoServerLayout);
+        $this->addOption('Floating', $this->floating);
+        $this->addOption('TransformationMatrix', $this->transformationMatrix);
+        $this->addOption('AccelerationProfile', $this->accelerationProfile);
+        $this->addOption('ConstantDeceleration', $this->constantDeceleration);
+        $this->addOption('AdaptiveDeceleration', $this->adaptiveDeceleration);
+        $this->addOption('AccelerationScheme', $this->accelerationScheme);
+        $this->addOption('AccelerationNumerator', $this->accelerationNumerator);
+        $this->addOption('AccelerationDenominator', $this->accelerationDenominator);
+        $this->addOption('AccelerationThreshold', $this->accelerationThreshold);
 
         $myEntries = array(
             'Identifier' => $this->identifier,
