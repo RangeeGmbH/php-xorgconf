@@ -197,7 +197,7 @@ class ServerLayoutSection extends Section
      */
     public function render()
     {
-        if (empty($this->identifier) || empty($this->screens) || empty($this->inputDevices)) {
+        if (empty($this->identifier) || empty($this->screens)) {
             return false;
         }
 
