@@ -242,6 +242,41 @@ class ServerFlagsSection extends Section
     private $log;
 
     /**
+     * Sets DPMS globally on or off. False by default.
+     *
+     * @var bool $dpms
+     */
+    private $dpms;
+
+    /**
+     * Gets dpms
+     *
+     * @see \Xorgconf\Sections\ServerFlagsSection::$dpms $dpms
+     *
+     * @return boolean
+     */
+    public function isDpms()
+    {
+        return $this->dpms;
+    }
+
+    /**
+     * Sets dpms
+     *
+     * @see \Xorgconf\Sections\ServerFlagsSection::$dpms $dpms
+     *
+     * @param boolean $dpms
+     *
+     * @return ServerFlagsSection
+     */
+    public function setDpms($dpms)
+    {
+        $this->dpms = $dpms;
+
+        return $this;
+    }
+
+    /**
      * Gets the default server layout
      *
      * @see \Xorgconf\Sections\ServerFlagsSection::$defaultServerLayout $defaultServerLayout
@@ -941,7 +976,8 @@ class ServerFlagsSection extends Section
             ->addOption('IgnoreABI', $this->ignoreAbi)
             ->addOption('AutoAddDevices', $this->autoAddDevices)
             ->addOption('AutoEnableDevices', $this->autoEnableDevices)
-            ->addOption('Log', $this->log);
+            ->addOption('Log', $this->log)
+            ->addOption('DPMS', $this->dpms);
 
         return $this->_render(array());
     }
