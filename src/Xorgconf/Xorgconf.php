@@ -28,6 +28,8 @@ namespace Xorgconf;
 /**
  * Class to build a xorg.conf
  *
+ * See https://www.x.org/archive/current/doc/man/man5/xorg.conf.5.xhtml for documentation
+ *
  * @package Xorgconf
  */
 class Xorgconf
