@@ -41,6 +41,57 @@ abstract class Section
     private $options;
 
     /**
+     * Array of custom lines to be added to a section
+     *
+     * @var string[] $customLines
+     */
+    private $customLines;
+
+    /**
+     * Gets the array of custom lines
+     *
+     * @see \Xorgconf\Section::$customLines $customLines
+     *
+     * @return string[]
+     */
+    public function getCustomLines()
+    {
+        return $this->customLines;
+    }
+
+    /**
+     * Sets the array of custom lines
+     *
+     * @param string[] $customLines
+     *
+     * @see \Xorgconf\Section::$customLines $customLines
+     *
+     * @return Section
+     */
+    public function setCustomLines($customLines)
+    {
+        $this->customLines = $customLines;
+
+        return $this;
+    }
+
+    /**
+     * Adds a custom line to the array of custom line
+     *
+     * @see \Xorgconf\Section::$customLines $customLines
+     *
+     * @param $customLine string
+     *
+     * @return Section
+     */
+    public function addCustomLine($customLine)
+    {
+        $this->customLines[] = $customLine;
+
+        return $this;
+    }
+
+    /**
      * Renders the current section as text
      *
      * @return string
@@ -161,6 +212,13 @@ abstract class Section
                         $result .= "  Option \"{$key}\" \"{$value}\"\n";
                     }
                 }
+            }
+        }
+
+        // Render custom lines
+        if (!empty($this->customLines)) {
+            foreach ($this->customLines as $customLine) {
+                $result .= "  {$customLine}\n";
             }
         }
 
