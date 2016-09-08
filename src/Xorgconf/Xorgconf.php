@@ -28,6 +28,8 @@ namespace Xorgconf;
 /**
  * Class to build a xorg.conf
  *
+ * See https://www.x.org/archive/current/doc/man/man5/xorg.conf.5.xhtml for documentation
+ *
  * @package Xorgconf
  */
 class Xorgconf
@@ -40,15 +42,66 @@ class Xorgconf
     private $sections;
 
     /**
-     * Gets an array with sections.
+     * Adds a section to the array of sections.
      *
      * @see \Xorgconf\Xorgconf::$sections $sections
      *
+     * @param \Xorgconf\Section $section
+     *
+     * @return Xorgconf
+     */
+    public function addSection($section)
+    {
+        $this->sections[] = $section;
+
+        return $this;
+    }
+
+    /**
+     * Returns the first result of getSections()
+     *
+     * @param null $sectionType
+     * @param null $identifier
+     *
+     * @return null|Section
+     */
+    public function getSection($sectionType = null, $identifier = null)
+    {
+        $result = $this->getSections($sectionType, $identifier);
+
+        if (count($result) > 0) {
+            return $result[0];
+        }
+
+        return null;
+    }
+
+    /**
+     * Gets an array with sections. Optionally filtered by sectionType and/or identifier.
+     *
+     * @see \Xorgconf\Xorgconf::$sections $sections
+     *
+     * @param $sectionType string
+     * @param $identifier  string
+     *
      * @return \Xorgconf\Section[]
      */
-    public function getSections()
+    public function getSections($sectionType = null, $identifier = null)
     {
-        return $this->sections;
+        $result = array();
+
+        foreach ($this->sections as $section) {
+            /** @var Section $section */
+            if (
+                (!isset($sectionType) || $section::SECTION_NAME === $sectionType) &&
+                (!isset($identifier) || (method_exists($section,
+                            'getIdentifier') && $section->getIdentifier() === $identifier))
+            ) {
+                $result[] = $section;
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -68,22 +121,6 @@ class Xorgconf
     }
 
     /**
-     * Adds a section to the array of sections.
-     *
-     * @see \Xorgconf\Xorgconf::$sections $sections
-     *
-     * @param \Xorgconf\Section $section
-     *
-     * @return Xorgconf
-     */
-    public function addSection($section)
-    {
-        $this->sections[] = $section;
-
-        return $this;
-    }
-
-    /**
      * Renders added sections as text and writes result to file
      *
      * @see \Xorgconf\Xorgconf::render() render()
@@ -92,8 +129,10 @@ class Xorgconf
      *
      * @return bool|int
      */
-    public function write($filename)
-    {
+    public
+    function write(
+        $filename
+    ) {
         if ($result = $this->render()) {
             return file_put_contents($filename, $result);
         } else {
@@ -106,7 +145,8 @@ class Xorgconf
      *
      * @return bool|string
      */
-    public function render()
+    public
+    function render()
     {
         if (empty($this->sections)) {
             return false;

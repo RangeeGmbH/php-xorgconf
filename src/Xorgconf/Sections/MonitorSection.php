@@ -523,9 +523,12 @@ class MonitorSection extends Section
             $this->addOption('Position', (string)$this->positionX . ' ' . (string)$this->positionY);
         }
 
+        if (isset($this->modeLine)) {
+            $this->addCustomLine("ModeLine {$this->modeLine}");
+        }
+
         return $this->_render(array(
             'Identifier' => $this->identifier,
-            'ModeLine'   => $this->modeLine,
         ));
     }
 
