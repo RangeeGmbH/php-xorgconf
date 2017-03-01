@@ -186,6 +186,8 @@ abstract class Section
                     }
                 } elseif (is_bool($value)) {
                     $result .= "  {$key} \"" . ($value ? 'true' : 'false') . "\"\n";
+                } elseif (is_int($value)) {
+                    $result .= "  {$key} {$value}\n";
                 } else {
                     // $value is a scalar
                     $result .= "  {$key} \"{$value}\"\n";
@@ -207,6 +209,8 @@ abstract class Section
                         }
                     } elseif (is_bool($value)) {
                         $result .= "  Option \"{$key}\" \"" . ($value ? 'true' : 'false') . "\"\n";
+                    } elseif (is_int($value)) {
+                        $result .= "  Option \"{$key}\" {$value}\n";
                     } else {
                         // $value is a scalar
                         $result .= "  Option \"{$key}\" \"{$value}\"\n";
