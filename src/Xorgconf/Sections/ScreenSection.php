@@ -236,7 +236,7 @@ class ScreenSection extends Section
      */
     public function render()
     {
-        if (empty($this->identifier) || empty($this->device) || empty($this->monitor)) {
+        if (empty($this->identifier) || empty($this->device)) {
             return false;
         }
 
@@ -246,7 +246,7 @@ class ScreenSection extends Section
             'Identifier'   => $this->identifier,
             'Device'       => $this->device->getIdentifier(),
             'Monitor'      => (!empty($this->monitor)) ? $this->monitor->getIdentifier() : null,
-            'DefaultDepth' => (string)$this->defaultDepth,
+            'DefaultDepth' => (int)$this->defaultDepth,
         ));
     }
 }

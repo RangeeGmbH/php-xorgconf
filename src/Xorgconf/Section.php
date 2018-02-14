@@ -186,6 +186,8 @@ abstract class Section
                     }
                 } elseif (is_bool($value)) {
                     $result .= "  {$key} \"" . ($value ? 'true' : 'false') . "\"\n";
+                } elseif (is_int($value)) {
+                    $result .= "  {$key} {$value}\n";
                 } else {
                     // $value is a scalar
                     $result .= "  {$key} \"{$value}\"\n";
@@ -196,21 +198,21 @@ abstract class Section
         // Render options
         if (!empty($this->options)) {
             foreach ($this->options as $key => $value) {
-                if (is_array($value)) {
-                    // $value is an array
-                    foreach ($value as $val) {
-                        $result .= "  Option \"{$key}\" \"{$val}\"\n";
-                    }
-                } elseif (is_bool($value)) {
-                    $result .= "  Option \"{$key}\" \"" . ($value ? 'true' : 'false') . "\"\n";
-                } elseif (is_int($value)) {
-                    $result .= "  Option \"{$key}\" {$value}\n";
+                if (empty($value)) {
+                    // $value is empty
+                    $result .= "  Option \"{$key}\"\n";
                 } else {
-                    // $value is a scalar
-                    if (empty($value)) {
-                        // $value is empty
-                        $result .= "  Option \"{$key}\"\n";
+                    if (is_array($value)) {
+                        // $value is an array
+                        foreach ($value as $val) {
+                            $result .= "  Option \"{$key}\" \"{$val}\"\n";
+                        }
+                    } elseif (is_bool($value)) {
+                        $result .= "  Option \"{$key}\" \"" . ($value ? 'true' : 'false') . "\"\n";
+                    } elseif (is_int($value)) {
+                        $result .= "  Option \"{$key}\" {$value}\n";
                     } else {
+                        // $value is a scalar
                         $result .= "  Option \"{$key}\" \"{$value}\"\n";
                     }
                 }
