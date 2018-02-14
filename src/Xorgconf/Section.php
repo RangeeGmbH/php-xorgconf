@@ -174,11 +174,6 @@ abstract class Section
         // Render entries
         if (!empty($entries)) {
             foreach ($entries as $key => $value) {
-                if (empty($value)) {
-                    // $value is empty
-                    continue;
-                }
-
                 if (is_array($value)) {
                     // $value is an array
                     foreach ($value as $val) {
@@ -190,6 +185,10 @@ abstract class Section
                     $result .= "  {$key} {$value}\n";
                 } else {
                     // $value is a scalar
+                    if (empty($value)) {
+                        // $value is empty
+                        continue;
+                    }
                     $result .= "  {$key} \"{$value}\"\n";
                 }
             }
@@ -198,21 +197,21 @@ abstract class Section
         // Render options
         if (!empty($this->options)) {
             foreach ($this->options as $key => $value) {
-                if (empty($value)) {
-                    // $value is empty
-                    $result .= "  Option \"{$key}\"\n";
+                if (is_array($value)) {
+                    // $value is an array
+                    foreach ($value as $val) {
+                        $result .= "  Option \"{$key}\" \"{$val}\"\n";
+                    }
+                } elseif (is_bool($value)) {
+                    $result .= "  Option \"{$key}\" \"" . ($value ? 'true' : 'false') . "\"\n";
+                } elseif (is_int($value)) {
+                    $result .= "  Option \"{$key}\" {$value}\n";
                 } else {
-                    if (is_array($value)) {
-                        // $value is an array
-                        foreach ($value as $val) {
-                            $result .= "  Option \"{$key}\" \"{$val}\"\n";
-                        }
-                    } elseif (is_bool($value)) {
-                        $result .= "  Option \"{$key}\" \"" . ($value ? 'true' : 'false') . "\"\n";
-                    } elseif (is_int($value)) {
-                        $result .= "  Option \"{$key}\" {$value}\n";
+                    // $value is a scalar
+                    if (empty($value)) {
+                        // $value is empty
+                        $result .= "  Option \"{$key}\"\n";
                     } else {
-                        // $value is a scalar
                         $result .= "  Option \"{$key}\" \"{$value}\"\n";
                     }
                 }
