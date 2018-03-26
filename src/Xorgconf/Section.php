@@ -205,7 +205,7 @@ abstract class Section
                 } elseif (is_bool($value)) {
                     $result .= "  Option \"{$key}\" \"" . ($value ? 'true' : 'false') . "\"\n";
                 } elseif (is_int($value)) {
-                    $result .= "  Option \"{$key}\" {$value}\n";
+                    $result .= "  Option \"{$key}\" \"{$value}\"\n";
                 } else {
                     // $value is a scalar
                     if (empty($value)) {
